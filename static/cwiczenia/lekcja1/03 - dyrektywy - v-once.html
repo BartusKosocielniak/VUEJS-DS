@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-once>{{title}}</h1>
+        <h2 v-once>{{ content }}</h2>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    title: "03: Dyrektywy VueJS",
+                    content: "dyrektywa v-once - działa raz -> bez aktualizacji wartości"
+                }
+            }
+        }).mount("#app")
+
+        // app.title += " VueJS"
+
+    </script>
+</body>
+
+</html>

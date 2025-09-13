@@ -21,7 +21,6 @@ app.get('/test', (req, res) => {
 app.listen(PORT, function () {
     const filenames = fs.readdirSync(__dirname + "/static/cwiczenia"); 
     console.log("start serwera na porcie " + PORT )
-    console.log(filenames)
 })
 
 
@@ -30,5 +29,6 @@ app.get('/', (req, res) => {
 })
 
 app.use(express.static('static'))
-
+// 
+app.use(express.static('static/cwiczenia/lekcja1'))
 
