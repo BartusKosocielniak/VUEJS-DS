@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="title"></h1>
+        <h2 v-text="content"></h2>
+        <div class="">
+            <label for="lazy">Wiadomość (.lazy - aktualizacja po utracie fokusu)</label>
+            <input v-model.lazy="form.lazyMessage" type="text" id="lazy">
+            <br>
+            <label for="trim">Login (.trim - usuwa białe znaki z początku i końca)</label>
+            <input v-model.trim="form.username" type="text" id="trim">
+            <br>
+            <label for="number">Wiek (jest .number -> konwersja na liczbę)</label>
+            <input v-model.number="form.age" type="text" id="number">
+            <br>
+            <label for="noNumber">Wiek (nie ma .number -> nie konwertuje na liczbę)</label>
+            <input v-model="form.age2" type="text" id="noNumber">
+
+        </div>
+
+
+        <pre>{{ form }}</pre>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+            data() {
+                return {
+                    title: '09: Dyrektywy',
+                    content: 'dyrektywa v-model - zaawansowane użycie',
+                    form: {
+                        lazyMessage: 'Wpisz coś i kliknij poza polem',
+                        username: "something",
+                        age:'2',
+                        age2:'20',
+                    }
+                }
+            }
+        }).mount("#app")
+
+        app.title += " VueJS"
+    </script>
+</body>
+
+</html>

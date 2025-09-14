@@ -11,15 +11,23 @@
 
 <body>
     <div id="app">
-        <h1>{{ title }}</h1>
-        <h2>{{ content }}</h2>
+        <h1 v-text="title"></h1>
+        <h2 v-text="content"></h2>
+        <p>Math.pow(2,5) = {{ Math.pow(2,5) }}</p>
+        <p>timestamp ={{ new Date().getTime() }}</p>
+        <p>random = {{ Math.random() }}</p>
+        <p>content.length = {{x > 5 ? "tak" : "nie"}}</p>
+        <p v-text="y.length < 5 ? 'tak' : 'nie'"></p>
     </div>
     <script>
         const app = Vue.createApp({
+
             data() {
                 return {
-                    title: "01: Dyrektrywy",
-                    content: "Interpolacja danych z obiektu typu data - w podwójnych nawiasach {{}} oraz aktualizacja wartości po ich zmianie"
+                    title: '07: Dyrektywy',
+                    content: 'dyrektywa umożliwiając dowolne obliczenia, wyrażenia, skrócony if etc',
+                    x: 100,
+                    y: "test"
                 }
             }
         }).mount("#app")
