@@ -16,7 +16,8 @@ function htmlBuilder(data) {
 		data.lessons[index].forEach(lesson => {
 			let a = document.createElement('a')
 			a.textContent = lesson
-			a.href = `/${lesson}`
+			a.href = `${folder}/${lesson}`
+			a.target="_blank"
 			div.appendChild(a)
 		})
 		// let ul = document.createElement("ul");

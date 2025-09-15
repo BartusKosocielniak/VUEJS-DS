@@ -30,5 +30,6 @@ app.get('/', (req, res) => {
 
 app.use(express.static('static'))
 // 
-app.use(express.static('static/cwiczenia/lekcja1'))
+app.use(express.static('static/cwiczenia'))
+// app.use(express.static('static/cwiczenia/lekcja2'))
 

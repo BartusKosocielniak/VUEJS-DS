@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <h2>{{ content }}</h2>
+        <h3>cw 1</h3>
+        <ul>
+            <li>{{ array[0] }}</li>
+            <li>{{ array[1] }}</li>
+            <li>{{ array[2] }}</li>
+        </ul>
+        <hr>
+        <h3>cw 2</h3>
+        <div class="container-flex">
+            <ul>
+                <li v-for="item in array">{{item}}</li>
+            </ul>
+            <ul>
+                <li v-for="item of array2">{{item}}</li>
+            </ul>
+            <ul>
+              <li v-for="(item,i) in array2">{{i}}:{{item}}</li>  
+            </ul>
+        </div>
+</div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    title: "01: Dyrektrywy VueJS",
+                    content: "Dyrektywa v-for - iteracja po wartościach tablicy - wiązanie dwukierunkowe",
+                    array: [1, 2, 3, 4, 5],
+                    array2: ["d", "b", "c", "a"]
+                }
+            }
+        }).mount("#app")
+        // app.title += " VueJS"
+    </script>
+</body>
+
+</html>

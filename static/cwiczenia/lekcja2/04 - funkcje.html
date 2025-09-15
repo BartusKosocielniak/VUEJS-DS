@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="title"></h1>
+        <h2 v-text="content"></h2>
+        <p>tekst: <span v-text="text"></span></p>
+        <p>length: <span v-text="length"></span></p>
+<hr>
+        <h3>długość tekstu: {{ getTextLength3() }}</h3>
+        <h3>długość tekstu: {{ getTextLength(text) }}</h3>
+        <h3 v-text="getTextLength(text)"></h3>
+        <h3 v-html="getTextLengthWithHTML()"></h3>
+<hr>
+<h3>wartość length się zmieniła na: 100 po wywołaniu odpowiedniej funkcji</h3>
+<!-- app.setLength(100) -->
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+            data() {
+                return {
+                    title: '04: Funkcje',
+                    content: 'różne sposoby ich wywołania',
+                    text: "to jest teksteeee",
+                    length: 0
+                }
+
+            },
+            methods: {
+                getTextLength(val) {
+                    return val.length
+                },
+                getTextLength3() {
+                    return this.text.length
+                },
+                getTextLengthWithHTML() {
+                    return "długość tekstu wewnątrz znacznika <b>HTML: " + this.text.length + "</b>"
+                },
+                setLength(val) {
+                    this.length = val
+                }
+            }
+        }).mount("#app")
+
+
+
+    </script>
+</body>
+
+</html>
