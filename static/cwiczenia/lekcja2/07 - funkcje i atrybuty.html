@@ -13,26 +13,65 @@
     <div id="app">
         <h1 v-text="title"></h1>
         <h2 v-text="content"></h2>
-        <p>Math.pow(2,5) = {{ Math.pow(2,5) }}</p>
-        <p>timestamp ={{ new Date().getTime() }}</p>
-        <p>random = {{ Math.random() }}</p>
-        <p>content.length = {{x > 5 ? "tak" : "nie"}}</p>
-        <p v-text="y.length < 5 ? 'tak' : 'nie'"></p>
+        <a v-bind:href="link">
+            <img v-bind:src="image" />
+        </a>
+        <a v-bind:href="getLink()">
+            <img v-bind:src="getImage()" />
+        </a>
+        <a :href="getLink()">
+            <img v-bind:src="getImage()" />
+        </a>
+        <hr>
+        <h3>zadanie</h3>
+        <div class="container-flex">
+            <div v-for="(item,i) in array" class="flex">
+                <div class="">
+                    {{getCar(item)}}
+                    <img v-bind:src="getCarImage(item.model)" :width="img_width" :height="img_height">
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         const app = Vue.createApp({
 
             data() {
                 return {
-                    title: '07: Dyrektywy',
-                    content: 'dyrektywa umożliwiając dowolne obliczenia, wyrażenia, skrócony if etc',
-                    x: 100,
-                    y: "test"
+                    title: '07: funkcje i atrybuty',
+                    content: 'v-bind -> jak połączyć atrybuty z wynikiem działania funkcji',
+                    link: "https://vuejs.org/",
+                    image: "https://vuejs.org/images/logo.png",
+                    array: [{ id: 1, model: "Mercedes-Benz", typ: "(brak)", rok: "1963" },
+                    { id: 2, model: "Opel", typ: "Corsa", rok: "2010" },
+                    { id: 3, model: "Peugeot", typ: "308", rok: "2008" },
+                    { id: 4, model: "Mercedes-Benz", typ: "(brak)", rok: "2002" },
+                    { id: 5, model: "Opel", typ: "Corsa", rok: "1999" },
+                    ],
+                    img_width: 150,
+                    img_height: 100,
+
                 }
+            },
+            methods: {
+                getLink() {
+                    return this.link
+                },
+                getImage() {
+                    return this.image
+                },
+                getCar(car) {
+                    return car.model + "-" + car.typ + "-" + car.rok
+                },
+                getCarImage(model) {
+                    // console.log("../gfx/" + model + ".png");
+                    return "/gfx/" + model + ".png"
+                }
+
             }
         }).mount("#app")
 
-        app.title += " VueJS"
+        app.title += " atrybuty"
     </script>
 </body>
 

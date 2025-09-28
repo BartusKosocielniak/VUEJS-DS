@@ -13,35 +13,47 @@
     <div id="app">
         <h1 v-text="title"></h1>
         <h2 v-text="content"></h2>
-        <h3>zadanie 1</h3>
-        <p>Komunikat z pola txt: {{ message }}</p>
-
-        <input v-model="message" type="text">
-
-        <h3>zadanie 2</h3>
-        <p>Wybrane z selecta: {{ selected }}</p>
-
-        <select v-model="selected">
-            <option>aaa</option>
-            <option>bbb</option>
-            <option>ccc</option>
-        </select>
+        <div class="">
+            <h3>{{getRandom}}</h3>
+            <h3>{{getRandom}}</h3>
+            <h3>{{getRandom}}</h3>
+            <hr>
+            <h3>{{getRandomMethod()}}</h3>
+            <h3>{{getRandomMethod()}}</h3>
+            <h3>{{getRandomMethod()}}</h3>
+        </div>
     </div>
     <script>
         const app = Vue.createApp({
 
             data() {
                 return {
-                    title: '04: Dyrektywy',
-                    content: 'dyrektywa v-model - umożliwia dwukierunkowe wiązanie: dane->interfejs, interfejs->dane',
-                    message: "zawartość pola txt",
-                    selected: ""
-
+                    title: '06: computed properties',
+                    content: 'computed wykonują się tylko raz, patrz konsola',
+                    number: 100
+                }
+            },
+            computed: {
+                getRandom() {
+                    const d = new Date();
+                    let second = d.getSeconds();
+                    const message = "COMPUTED: " + this.number + " " + Math.random() * 10 + " sekunda: " + second;
+                    console.log(message);
+                    return message
+                }
+            },
+            methods: {
+                getRandomMethod() {
+                    const d = new Date();
+                    let second = d.getSeconds();
+                    const message = "Method: " + this.number + " " + Math.random() * 10 + " sekunda: " + second;
+                    console.log(message);
+                    return message
                 }
             }
         }).mount("#app")
 
-        app.title += " VueJS"
+        app.title += " cd"
     </script>
 </body>
 
