@@ -26,7 +26,7 @@
         <h3>zadanie</h3>
         <div class="container-flex">
             <div v-for="(item,i) in array" class="flex">
-                <div class="">
+                <div v-bind:class="getStyle(item.rok)">
                     {{getCar(item)}}
                     <img v-bind:src="getCarImage(item.model)" :width="img_width" :height="img_height">
                 </div>
@@ -66,6 +66,13 @@
                 getCarImage(model) {
                     // console.log("../gfx/" + model + ".png");
                     return "/gfx/" + model + ".png"
+                },
+                getStyle(rok){
+                    if(rok>2000){
+                        return "green-container"
+                    }else{
+                        return "gray-container"
+                    }
                 }
 
             }

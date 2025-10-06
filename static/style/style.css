@@ -23,3 +23,11 @@ h2 {
 .flex{
 	flex: 1
 }
+.gray-container{
+	background-color: #333;
+	color: green;
+}
+.green-container{
+	background-color: green;
+	color: #333;
+}
