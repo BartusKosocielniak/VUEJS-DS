@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <h2>{{ content }}</h2>
+        <div class="container-flex">
+            <div class="flex">
+                <h3>cw 01 - kliknij w diva</h3>
+                <!-- <div v-on:click="onClick">CLICK ME!</div>
+                <input type="checkbox" v-on:click="onCheckbox">
+                <button v-on:click="onButtonClick">KLIK</button> -->
+                <div @click="onButtonClick">CLICK ME!</div>
+                <!-- <button @click="onButtonClick">KLIK</button> -->
+                <h3>cw 02 - wartosć (value) z selecta</h3>
+                <!-- jenda z opcji:
+                <select v-model="selected"></select> -->
+                <select v-on:change="onChange">
+                    <option>[wybierz]</option>
+                    <option>option 1</option>
+                    <option>option 2</option>
+                </select>
+                <span>{{selected}}</span>
+                <h3>cw 03 - wartość (value) range</h3>
+                <input type="range" v-on:input="onInput" min="0" max="100">
+                <span>{{range}}</span>
+            </div>
+            <div class="flex">
+                <h3>cw 04 - wartość (value) z checkboxa</h3>
+                <input type="checkbox" @click="onCheckbox">
+                <span>{{outputCheckbox}}</span>
+                <h3>cw 05 - klik buttona</h3>
+                <button @click="onButtonClickIncreaseValue">button 1 - powiększa wartość licznika</button>
+                <span>{{clickValue}}</span>
+                <h3>cw 06 - klik buttona</h3>
+                <div class="">
+                <button @click="onButtonClickPower">button 1 - liczy 2 do potęgi licznika</button>
+                <span>{{powerOfTwo}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    title: "01: Events - simple",
+                    content: "events -> zapis zdarzenia v-on:click jest równoważny @click",
+                    selected: "not selected",
+                    range: 50,
+                    outputCheckbox: false,
+                    clickValue: 0,
+                    powerOfTwo: 0
+                }
+            },
+            methods: {
+                onButtonClick() {
+                    alert("KLIK")
+                },
+                onChange(e) {
+                    console.log(e.target.value)
+                    this.selected = e.target.value
+                },
+                onCheckbox(e) {
+                    console.log(e.target.checked)
+                    this.outputCheckbox = e.target.checked
+                },
+                onInput(e){
+                    this.range = e.target.value
+                },
+                onButtonClickIncreaseValue(){
+                    this.clickValue++
+                },
+                onButtonClickPower(){
+                    this.powerOfTwo = Math.pow(2, this.clickValue)
+                }
+            }
+        }).mount("#app")
+        // app.title += " VueJS"
+    </script>
+</body>
+
+</html>

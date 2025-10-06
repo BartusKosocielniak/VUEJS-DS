@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="title"></h1>
+        <h2 v-text="content"></h2>
+        <div class="">
+            <h3>{{getRandom}}</h3>
+            <h3>{{getRandom}}</h3>
+            <h3>{{getRandom}}</h3>
+            <hr>
+            <h3>{{getRandomMethod()}}</h3>
+            <h3>{{getRandomMethod()}}</h3>
+            <h3>{{getRandomMethod()}}</h3>
+        </div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+            data() {
+                return {
+                    title: '06: computed properties',
+                    content: 'computed wykonują się tylko raz, patrz konsola',
+                    number: 100
+                }
+            },
+            computed: {
+                getRandom() {
+                    const d = new Date();
+                    let second = d.getSeconds();
+                    const message = "COMPUTED: " + this.number + " " + Math.random() * 10 + " sekunda: " + second;
+                    console.log(message);
+                    return message
+                }
+            },
+            methods: {
+                getRandomMethod() {
+                    const d = new Date();
+                    let second = d.getSeconds();
+                    const message = "Method: " + this.number + " " + Math.random() * 10 + " sekunda: " + second;
+                    console.log(message);
+                    return message
+                }
+            }
+        }).mount("#app")
+
+        app.title += " cd"
+    </script>
+</body>
+
+</html>

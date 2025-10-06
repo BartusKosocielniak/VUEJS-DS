@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="title"></h1>
+        <h2 v-text="content"></h2>
+        <h3>sterowanie stylami</h3>
+        <div :style="{ fontSize: fontSize + 'px', backgroundColor:  backgroundColor, color: fontColor}">element</div>
+        <p>Rozmiar czcionki: {{fontSize}}px</p>
+        <input type="range" v-model="fontSize" min="20" max="100">
+        <div class="">
+            <label for="bgc">Kolor tła: {{backgroundColor}}</label>
+            <input type="color" name="bgc" id="bgc" v-model="backgroundColor">
+        </div>
+        <div class="">
+            <label for="fontColor">Kolor tekstu: {{fontColor}}</label>
+            <input type="color" name="fontColor" id="fontColor" v-model="fontColor">
+        </div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+            data() {
+                return {
+                    title: '08: Dyrektywy',
+                    content: 'dyrektywa v-bind - range, color',
+                    fontSize: 16,
+                    fontColor: '#fff',
+                    backgroundColor:'#333'
+                }
+            }
+        }).mount("#app")
+
+        app.title += " VueJS"
+    </script>
+</body>
+
+</html>
