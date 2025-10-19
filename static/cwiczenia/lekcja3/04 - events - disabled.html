@@ -13,41 +13,65 @@
     <div id="app">
         <h1 v-text="title"></h1>
         <h2 v-text="content"></h2>
-        <p>tekst: <span v-text="text"></span></p>
-        <p>length: <span v-text="length"></span></p>
-<hr>
-        <h3>długość tekstu: {{ getTextLength3() }}</h3>
-        <h3>długość tekstu: {{ getTextLength(text) }}</h3>
-        <h3 v-text="getTextLength(text)"></h3>
-        <h3 v-html="getTextLengthWithHTML()"></h3>
-<hr>
-<h3>wartość length się zmieniła na: 100 po wywołaniu odpowiedniej funkcji</h3>
-<!-- app.setLength(100) -->
+        <select v-model="selected">
+            <option value="0">--Please choose an option--</option>
+            <option v-for="value in uniqueValues" :key="value" :value="value">
+                {{ value }}
+            </option>
+        </select>
+        <div class="liczby">
+            <div v-for="arrayChild in array">
+                <span class="element-number" v-for="x in arrayChild">
+                    <button :class="makeButtonClass(x)" :disabled="makeDisabledAttr(x)" @click="show(x)">{{x}}</button>
+                    <!-- <button :class="makeButtonClass(x)">{{x}}</button> -->
+                </span>
+            </div>
+        </div>
     </div>
     <script>
         const app = Vue.createApp({
 
             data() {
                 return {
-                    title: '04: Funkcje',
-                    content: 'różne sposoby ich wywołania',
-                    text: "to jest teksteeee",
-                    length: 0
+                    title: '04: events',
+                    content: 'select -> atrybuty disabled',
+                    array: [
+                        [1, 2, 3, 3, 3],
+                        [4, 4, 4, 7, 1],
+                        [2, 3, 3, 2, 1],
+                        [5, 5, 6, 4, 3],
+                        [1, 5, 1, 2, 5]
+                    ],
+                    selected: 1
                 }
 
             },
+            computed: {
+                uniqueValues() {
+                    return [...new Set(this.array.flat().sort())]
+                }
+            },
             methods: {
-                getTextLength(val) {
-                    return val.length
+                makeButtonClass(x) {
+                    console.log(x);
+                    console.log("kurwa" + this.selected);
+                    if (x === this.selected) {
+                        return 'niebieskie'
+                    }
+                    else
+                        return 'dupa'
                 },
-                getTextLength3() {
-                    return this.text.length
+                makeDisabledAttr(x) {
+                    console.log(x);
+                    console.log("kurwa" + this.selected);
+                    if (x == this.selected) {
+                        return false
+                    }
+                    else
+                        return true
                 },
-                getTextLengthWithHTML() {
-                    return "długość tekstu wewnątrz znacznika <b>HTML: " + this.text.length + "</b>"
-                },
-                setLength(val) {
-                    this.length = val
+                show(x){
+                    alert("ja jestem " + x)
                 }
             }
         }).mount("#app")

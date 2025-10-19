@@ -13,47 +13,32 @@
     <div id="app">
         <h1 v-text="title"></h1>
         <h2 v-text="content"></h2>
-        <!-- <div class="container-flex">
-            <div class="flex">
-                <h3>ul 1 - obiekty tablicy</h3>
-                <ul>
-                    <li v-for="item in array">{{item}}</li>
-                </ul>
-            </div>
-            <div class="flex">
-                <h3>ul 1 - wartosci obiektów tablicy</h3>
-                <ul>
-                    <li v-for="item in array">{{item.a}} {{item.b}}</li>
-                </ul>
-            </div>
-            <div class="flex">
-                <h3>ul 1 - wartosci obiektów tablicy z licznikiem</h3>
-                <ul>
-                    <li v-for="(item,i) in array">{{i}}: {{item.a}} {{item.b}}</li>
-                </ul>
-            </div>
-        </div> -->
-        <h3>ul 1 - value key obiektu</h3>
-        <ul>
-            <li v-for="(val, key) in object">{{key}} - {{val}}</li>
-        </ul>
+        <!-- <ul>
+            <li v-for="(item,i) in items" v-bind:class="{ 'active': true}">{{item.text}}<input type="checkbox" v-model="item.checked"></li>
 
-        <h3>ul 2 - key value index obiektu</h3>
-        <ul>
-            <li v-for="(val, key, index) in object">{{index}} - {{key}} - {{val}}</li>
-        </ul>
+        </ul> -->
+        <li v-for="item in items" v-bind:class="{ 'active':item.checked}">
+            <span>{{item.text}}</span><input type="checkbox" v-model="item.checked">
+        </li>
+        <button v-on:click="addItem">dodaj element</button>
+        <input type="text" v-on:keyup.enter="addItem">
     </div>
     <script>
         const app = Vue.createApp({
             data() {
                 return {
-                    title: "03: Dyrektywy VueJS",
-                    content: "dyrektywa v-for, iteracja po key, value, indeksie obiektu",
-                    object: {
-                        a: 111,
-                        b: 222,
-                        c: 333
-                    }
+                    title: "03: Events",
+                    content: "dyrektywy v-on:click oraz v-on:keyup.enter -> dodanie nowego elementu do tablicy",
+                    items: [
+                        { text: "element 1", checked: true },
+                        { text: "element 2", checked: false },
+                        { text: "element 3", checked: false },
+                    ]
+                }
+            },
+            methods: {
+                addItem() {
+                    this.items.push({ text: "dodany", checked: false })
                 }
             }
         }).mount("#app")

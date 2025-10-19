@@ -27,8 +27,14 @@
                 }
 
             },
-                        methods: {
-                        }
+            methods: {
+                showElement(){
+                    if(this.show)
+                        this.show = false;
+                    else
+                        this.show = true;
+                }
+            }
         }).mount("#app")
 
         // app.title += " VueJS"

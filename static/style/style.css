@@ -31,3 +31,14 @@ h2 {
 	background-color: green;
 	color: #333;
 }
+
+/* cz3 */
+.active{
+	color: red;
+}
+.element-number{
+	padding: 10px;
+}
+.niebieskie{
+	background-color: blue;
+}
