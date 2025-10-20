@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <template id="test">
+        <div class="items-component">
+            <h3>{{this.myHeader ? this.myHeader : "nie określono"}}</h3>
+            <p>Imię: {{this.myFirstName ?? "nie okreslono"}}</p>
+            <p>Naziwsko: {{this.myLastName ?? "nie okreslono"}}</p>
+            
+        </div>
+    </template>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <h2>{{ content }}</h2>
+        <div class="container-flex">
+            <items-component my-header="" my-first-name="" my-last-name="Nowak" my-age="30" my-profession="Kierownca"></items-component>
+            <!-- <items-component></items-component>
+            <items-component></items-component> -->
+        </div>
+
+        <!-- <test-component></test-component> -->
+    </div>
+    <script>
+        const ItemsComponent = {
+
+            template: "#test",
+            props: ["myHeader", "myFirstName", "myLastName", "myAge", "myProfession"],
+            data() {
+                return {
+                    a: "Bartłomiej",
+                    b: "Kościelniak",
+                    c: "18",
+                    d: "Dla rodziców :))"
+                }
+            },
+
+            methods: {
+                getMyHeader(){
+                    console.log(this.myHeader);
+                    
+                    return this.myHeader ? this.myHeader : "nie określono"
+                }
+            },
+        };
+        const app = Vue.createApp({
+            data() {
+                return {
+                    title: "03. Components",
+                    content: "props -> dane przekazywane do komponentu -> reakcja na brak danych",
+                }
+            },
+            methods: {
+            },
+            components: {
+                "items-component": ItemsComponent,
+            }
+        }).mount("#app")
+        // app.title += " VueJS"
+    </script>
+</body>
+
+</html>

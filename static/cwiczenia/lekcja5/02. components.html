@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <h2>{{ content }}</h2>
+        <div class="container-flex">
+            <items-component></items-component>
+            <items-component></items-component>
+            <items-component></items-component>
+        </div>
+    </div>
+    <script>
+        const ItemsComponent = {
+
+            template: `
+                    <div class="items-component"> 
+                        <p>Moja wizytówka</p>
+                        <p>Imię: {{ a }}</p>
+                        <p>Naziwsko : {{ b }}</p>
+                        <p>Wiek : {{ c }}</p>
+                        <p>Zawód : {{ d }}</p>
+                    </div>
+                    `,
+            data() {
+                return {
+                    a: "Bartłomiej",
+                    b: "Kościelniak",
+                    c: "18",
+                    d: "Dla rodziców :))"
+                }
+            },
+
+            methods: {
+
+            },
+        };
+        const app = Vue.createApp({
+            data() {
+                return {
+                    title: "02. Components",
+                    content: "data i template komponentu",
+                }
+            },
+            methods: {
+            },
+            components: {
+                "items-component": ItemsComponent
+            }
+        }).mount("#app")
+        // app.title += " VueJS"
+    </script>
+</body>
+
+</html>
