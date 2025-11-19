@@ -49,9 +49,9 @@
             Aktualna wartość: {{ value }}
         </p>
         <div class="">
-                <ul>
-                    <li v-for="item in array" :class="item.class">{{ currentItem(item) }}</li>
-                </ul>
+            <ul>
+                <li v-for="item in array" :class="item.class" :style="currentItem(item)">{{item.id}}</li>
+            </ul>
         </div>
         <!-- przyciski sterujące -->
         <button @click="start" class="start-btn">Start</button>
@@ -62,9 +62,9 @@
         const app = Vue.createApp({
             data() {
                 return {
-                    title: '09: zadanie 1',
-                    content: 'cwiczenie 09 - klasy css, v-bind',
-                    value: 0,
+                    title: '10: zadanie 2',
+                    content: 'cwiczenie 10 - klasy css, v-bind',
+                    value: "red",
                     intervalId: null,
                     array: [
                         { id: 1, class: "red" },
@@ -78,21 +78,29 @@
                 }
             },
             computed: {
-                currentItem(item) {
-                    // zmiana klasy w zależności od parzystości
-                    const  color = this.value % 2 === 0 ? 'red' : 'blue';
-                }
+
             },
             methods: {
                 start() {
                     if (this.intervalId) return; // nie uruchamiaj ponownie
                     this.intervalId = setInterval(() => {
-                        this.value++;
+                        if (this.value == "red") {
+                            this.value = "blue"
+                        } else {
+                            this.value = "red"
+                        }
                     }, 2000);
                 },
                 stop() {
                     clearInterval(this.intervalId);
                     this.intervalId = null;
+                },
+                currentItem(item) {
+                    if (item.class == this.value) {
+                        return "display:block"
+                    } else {
+                        return "display:none"
+                    }
                 }
             }
         }).mount("#app");
