@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <h2>{{ content }}</h2>
+        <form action="/aaa" method="POST" @reset="reset" @submit="submit">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    title: "01: Forms",
+                    content: "modyfikacja domyslynch zdarzen, e.preventDefault()"
+                }
+            },
+            methods: {
+                reset(e) {
+                    e.preventDefault();
+                    console.log("formularz się nie resetuje")
+                },
+                submit(e) {
+                    e.preventDefault();
+                    console.log("formularz się nie wysyła")
+                }
+            }
+        }).mount("#app")
+
+        app.title += " VueJS"
+    </script>
+</body>
+
+</html>
