@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="title"></h1>
+        <h2 v-text="content"></h2>
+        <!-- <input type="text" placeholder="dupa dupa" v-model="transformText"> -->
+        <div @input="onInput" contenteditable></div>
+        {{transformTextFunction()}}
+        <button @click="show"></button>
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+            data() {
+                console.log("data", new Date().getTime())
+
+                return {
+                    title: "04. Forms",
+                    content: "v-model -> text transform",
+                    transformText: "",
+                    newArray: ""
+                }
+            },
+            created() {
+                console.log("created", new Date().getTime())
+                fetch("http://localhost:3000/formsSix")
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log("Dane z created:", data);
+                    })
+                    .catch(err => console.error(err));
+            },
+            mounted() {
+                console.log("mounted", new Date().getTime())
+                fetch("/http://localhost:3000/formsSix")
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log("Dane z created:", data);
+                    })
+                    .catch(err => console.error(err));
+            }
+        }).mount("#app")
+
+        app.title += " atrybuty"
+    </script>
+</body>
+
+</html>

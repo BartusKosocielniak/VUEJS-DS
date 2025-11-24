@@ -33,3 +33,21 @@ app.use(express.static('static'))
 app.use(express.static('static/cwiczenia'))
 // app.use(express.static('static/cwiczenia/lekcja2'))
 
+app.get('/formsSix', (req, res) => {
+    const products = [
+        {name: "Myszka", checked: "tak"},
+        {name: "Laptop", checked: "nie"}
+    ]
+        const paymentOptions = [
+        {name: "blik", icon: "blik.png"},
+        {name: "paypal", icon: "paypal.png"}
+    ]
+        const deliveryOptions = [
+        {name: "InPost", icon: "inpost.png"},
+        {name: "dpd", icon: "dpd.png"}
+    ]
+
+
+        // Object.assign({products: products, deliveryOptions: deliveryOptions, paymentOptions: paymentOptions});
+    res.json({products: products, deliveryOptions: deliveryOptions, paymentOptions: paymentOptions})
+})

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="title"></h1>
+        <h2 v-text="content"></h2>
+
+
+        <form action="/aaa" method="POST" @reset="reset" @submit="submit" class="form_01">
+            <div class="flex-column">
+                <div class="flex-in-column">
+                    <h3>Akcesoria</h3>
+                    <input type="checkbox" v-model="mysz" true-value="tak" false-value="nie" />
+                    <label for="mysz">Myszka</label>
+                    <br>
+                    <input type="checkbox" v-model="laptop" true-value="tak" false-value="nie" />
+                    <label for="laptop">Laptop</label>
+                    <br>
+                    <input type="checkbox" v-model="komputer" true-value="tak" false-value="nie" />
+                    <label for="komputer">komputer stacjonarny</label>
+                </div>
+                <div class="">
+                    <h3>Forma odbioru</h3>
+                    <input type="radio" v-model="dostawa" value="kurier" name="dostawa" />
+                    <label for="">Kurier</label>
+                    <br>
+                    <input type="radio" v-model="dostawa" value="poczta" name="dostawa" />
+                    <label for="">Poczta</label>
+                    <br>
+                    <input type="radio" v-model="dostawa" value="osobiście" name="dostawa" />
+                    <label for="">Osobiście</label>
+                    <br>
+                    <select v-model="dostawa">
+                        <option value="kurier">kurier</option>
+                        <option value="poczta">poczta</option>
+                        <option value="osobiście">osobiście</option>
+                    </select>
+                </div>
+                <div class="">
+                    <h3>Potwierdzenie</h3>
+            
+                    <input type="checkbox" value="potwierdz" v-model="potwierdz"/> potweirdz to i to
+                    <input type="submit" value="Wyślij" :disabled="!isReady" />
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+            data() {
+                return {
+                    title: "03. Forms",
+                    content: "koszyk: form - checkbox, radio, select -> v-model",
+                    name: "",
+                    mysz: "",
+                    laptop: "",
+                    komputer: "",
+                    dostawa: "",
+
+                }
+            },
+            methods: {
+
+            },
+            computed: {
+                isReady() {
+                    if ((this.mysz === "tak" || this.komputer === "tak" || this.laptop === "tak") && this.potwierdz && this.dostawa.length > 0) {
+                        return true
+                    } else
+                        return false
+                }
+            }
+        }).mount("#app")
+
+        app.title += " atrybuty"
+    </script>
+</body>
+
+</html>

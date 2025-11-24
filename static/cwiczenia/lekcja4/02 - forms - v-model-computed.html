@@ -1,1 +1,51 @@
-\
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text="title"></h1>
+        <h2 v-text="content"></h2>
+
+
+        <form action="/aaa" method="POST" @reset="reset" @submit="submit" class="form_01">
+            <input v-model="name" /> Długość: {{ name.length }}
+            <input type="submit" value="Wyślij" :disabled="!isReady" />
+        </form>
+
+    </div>
+    <script>
+        const app = Vue.createApp({
+
+            data() {
+                return {
+                    title: "02. Forms",
+                    content: "modyfikacja domyślnych zdarzeń, e.preventDefault()",
+                    name: ""
+                }
+            },
+            methods: {
+
+            },
+            computed: {
+                isReady() {
+                    if (this.name.length > 0) {
+                        return true
+                    } else
+                        return false
+                }
+            }
+        }).mount("#app")
+
+        app.title += " atrybuty"
+    </script>
+</body>
+
+</html>

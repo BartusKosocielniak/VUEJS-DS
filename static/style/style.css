@@ -49,3 +49,7 @@ h2 {
 	border: 2px blue dashed;
 	margin: 10px;
 }
+.flex-column{
+	display: flex;
+	flex-direction: row;
+}
